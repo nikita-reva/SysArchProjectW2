@@ -19,7 +19,7 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-class Profile(models.Model):
+class RFIDToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.CharField(max_length=100, default='')
 
