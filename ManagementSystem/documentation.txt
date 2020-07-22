@@ -1,0 +1,201 @@
+<-- IN COMMAND LINE -->
+
+// Go to project directory
+cd C:\Users\Lenovo\Desktop\DjangoProject\ManagementSystem
+
+// Create virtual environment
+py -m venv env
+
+// Activate env
+env\Scripts\activate
+
+// Check pip version
+pip --version
+
+// upgrade pip if necessary
+python -m pip install --upgrade pip
+
+// Install django
+pip install django
+
+// Check django version
+python -m django --version
+
+// Check Python version
+python --version
+
+// View list of subcommands
+django-admin
+
+// Create a project -> name: "webservice"
+django-admin startproject webservice
+
+// Go to project folder
+cd webservice
+
+// Start server
+python manage.py runserver
+(* Quit server with CTRL+Fn+B *)
+
+<-- IN BROWSER -->
+
+// Go to
+http://127.0.0.1:8000/
+// or
+http://localhost:8000/
+
+// Log in with superuser account
+http://127.0.0.1:8000/admin
+
+<-- COMMAND LINE -->
+
+// Create an application in the project folder -> name: "blog"
+python manage.py startapp blog
+
+
+// Create database
+python manage.py makemigrations
+python manage.py migrate
+
+// Create superuser
+python manage.py createsuperuser
+
+// View SQL code
+python manage.py sqlmigrate blog 0001
+
+// Run python shell
+python manage.py shell
+>>> from blog.models import Post
+>>> from django.contrib.auth.models import User
+>>> User.objects.all()
+>>> User.objects.first()
+>>> User.objects.last()
+>>> User.objects.filter(username='Aniketos')
+>>> User.objects.filter(username='Aniketos').first()
+
+>>> user = User.objects.filter(username='Aniketos').first()
+>>> user.id
+>>> user.pk 	// pk = primary key
+>>> user = User.objects.get(id=1)
+
+// User posts 
+>>> user
+>>> Post.objects.all()
+>>> post_1 = Post(title='Blog1', content='First Post Content!', author=user)
+>>> post_1.save()
+>>> post_2 = Post(title='Blog 2', content='Second Post Content!', author_id=user.id)
+>>> post_2.save()
+>>> post = Post.objects.first()
+>>> post.content
+>>> post.date_posted
+>>> post.author
+>>> post.author.email
+>>> {parent.modelname_set}
+>>> user.post_set
+>>> user.post_set.all()
+>>> user.post_set.create(title='Blog 3',content='Third Post Content!')
+
+>>>exit()
+
+// Install crispy forms
+pip install django-crispy-forms
+--> CRISPY_TEMPLATE_PACK = 'bootstrap4' (in settings.py)
+
+<-- IN EDITOR -->
+
+// Go to blog folder and open views.py
+// Import:
+from django.http import HttpResponse
+
+// Handle HTTP request
+def home(request):
+    return HttpResponse('<h1>Blog Home</h1>')
+
+// Create a new file in the blog directory -> name: urls.py
+// Insert following code:
+from django.urls import path
+from . import views
+
+urlpatterns = [
+        path('', views.home; name='blog-home')
+]
+
+// Go to project folder and open urls.py (of the project)
+// Complete code:
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
+]
+
+// Open urls.py module
+
+// Check for available python versions
+py -0
+py -2
+py -3
+
+// To select a specific Python interpreter the director of the Python version must be added to the 
+// path variable and moved to the top (System Settings -> Advanced System Settings -> Environment Variables)
+
+// Find out which executable and version is used
+python
+>>> import sys
+>>> sys.executable
+>>> sys.version
+>>> exit()
+
+
+// View path variable
+echo %path%
+
+// Save objects from json file
+>>> from random import choice
+>>> from django.contrib.auth.models import User    
+>>> from blog.models import Post
+>>> import json
+   
+>>> with open('posts.json') as f:        
+...	posts_json = json.load(f)    
+>>> ids = [d.id for d in User.objects.all()]    
+>>> for post in posts_json:       
+...	Post(title=post['title'], content=post['content'], author_id=choice(ids)).save()`
+
+
+// Show info about installed package
+pip show django
+
+// Paginator objects
+>>> from django.core.paginator import Paginator
+>>> posts = ['1', '2', '3', '4', '5']
+>>> p = Paginator(posts, 2)
+>>> p.num_pages
+>>> for page in p.page_range:
+...     print(page)
+>>> p1 = p.page(1)
+>>> p1
+>>> p1.number
+>>> p1.object_list
+>>> p1.has_previous()
+>>> p1.has_next()
+>>> p1.next_page_number()
+
+
+// Force reset database django
+Delete the sqlite database file (often db.sqlite3) in your django project folder (or wherever you placed it)
+Delete everything except __init__.py file from migration folder in all django apps
+Make changes in your models (models.py).
+Run the command python manage.py makemigrations or python3 manage.py makemigrations
+Then run the command python manage.py migrate.
+
+akrupp@ea-pc165:~> mysql -u sysarch20ss-w5 -p sysarch20ss-w5
+
+mysql -u sysarch20ss-w5 -p sysarch20ss-w5 (-L)
+
+nohup
+
+source port: 3307
+
+Destination: localhost:3306

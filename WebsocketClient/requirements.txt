@@ -1,0 +1,9 @@
+// Publishing client
+pip install requests
+pip install websocket_client
+python client.py
+
+// Subscribing client
+pip install websockets
+python -m websockets ws://localhost:8000/ws/polData/
+

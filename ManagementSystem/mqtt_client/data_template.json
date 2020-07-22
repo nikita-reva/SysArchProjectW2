@@ -1,0 +1,59 @@
+{
+    "SensorValue3": 
+    [
+        {
+            "timestamp": 1595159612.566244, 
+            "valueZ": 1.160518961, 
+            "name": "Acceleration", 
+            "valueY": 9.327222494799999, 
+            "valueX": 3.0939196217999996
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "valueZ": -5891, 
+            "name": "Magnetometer", 
+            "valueY": -3382, 
+            "valueX": 600
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "valueZ": -12.425, 
+            "name": "Gyro", 
+            "valueY": -125.755, 
+            "valueX": 301.665
+        }
+    ], 
+    "SensorValue1": 
+    [
+        {
+            "timestamp": 1595159612.566244, 
+            "name": "LIDAR", 
+            "value": 0
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "name": "Humidity", 
+            "value": 0
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "name": "SteeringAngle", 
+            "value": 0
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "name": "Temperature", 
+            "value": 30.0
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "name": "Speed", 
+            "value": 0
+        }, 
+        {
+            "timestamp": 1595159612.566244, 
+            "name": "Altimeter", 
+            "value": 318.26
+        }
+    ]
+}
