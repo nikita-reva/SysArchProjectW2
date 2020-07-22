@@ -2,6 +2,7 @@ import time
 import paho.mqtt.client as mqtt
 import json
 import random
+from datetime import datetime
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
@@ -9,7 +10,11 @@ def on_connect(client, userdata, flags, rc):
 client = mqtt.Client()
 client.on_connect = on_connect
 
-rfid_req = { 'name': 'Aniketos'}
+rfid_req = { 
+    'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
+    'tokenID': 'blabla'
+    'login': True,
+    }
 
 username = 'W2'
 pw = 'DED'
@@ -20,5 +25,5 @@ client.loop_start()
 
 while True:
     time.sleep(10)
-    client.publish("/SysArch/V1/user/rfidrequest", json.dumps(rfid_req))
+    client.publish("/SysArch/V1/com2/web", json.dumps(rfid_req))
     print('Data sent...')

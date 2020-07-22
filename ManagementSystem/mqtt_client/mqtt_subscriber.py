@@ -57,7 +57,7 @@ ws2 = websocket.WebSocket()
 client.on_connect = on_connect
 client.message_callback_add('/SysArch/V1/sensor', on_message)
 client.message_callback_add('/SysArch/V1/com2/web', on_message_request)
-client.message_callback_add('/SysArch/V1/user/confirm', on_message_confirm)
+client.message_callback_add('/SysArch/V1/com2/car', on_message_confirm)
 
 username = 'W2'
 pw = 'DED'

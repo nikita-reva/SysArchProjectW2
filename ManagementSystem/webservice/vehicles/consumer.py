@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 import paho.mqtt.client as mqtt
 from channels.db import database_sync_to_async
 from vehicles.models import Vehicle
-import datetime
+from users.models import RFIDToken
+from datetime import datetime
 
 
 class DashConsumer(AsyncWebsocketConsumer):
@@ -154,7 +155,12 @@ class RFIDConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         datapoint = json.loads(text_data)
         print ('>>>>', text_data)
-        
+        time_in = datapoint['timestamp']
+        token_in = datapoint['tokenID']
+        login_in = datapoint['login']
+
+
+
         username = 'W2'
         pw = 'DED'
         client = mqtt.Client()
@@ -163,8 +169,8 @@ class RFIDConsumer(AsyncWebsocketConsumer):
         client.loop_start()
 
         @database_sync_to_async
-        def find_user(uname):
-            return User.objects.filter(username=uname).first()
+        def find_user(rfid):
+            return RFIDToken.objects.filter(token=rfid).first().user
 
         @database_sync_to_async
         def find_vehicle(vname):
@@ -174,15 +180,54 @@ class RFIDConsumer(AsyncWebsocketConsumer):
         def driver_allocate(vehicle, user):
             vehicle.driver = user.username
             vehicle.save()
+
+        @database_sync_to_async
+        def driver_remove(vehicle):
+            vehicle.driver = 'None'
+            vehicle.save()
         
-        found_user = await find_user(datapoint['name'])
+        found_user = await find_user(token_in)
         found_vehicle = await find_vehicle('Vehicle 1')
 
         print(found_user)
         print(found_vehicle)
+
+        print(login_in)
+
         if found_user != None:
-            client.publish("/SysArch/V1/user/confirm", json.dumps({'id': found_user.id}))
-            await driver_allocate(found_vehicle, found_user)
+            if login_in == 'True':
+                await driver_allocate(found_vehicle, found_user)
+                client.publish("/SysArch/V1/com2/car", json.dumps(
+                    {
+                        'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
+                        'login': True,
+                        'certified': True,
+                        'tokenID': token_in
+                    }
+                ))
+            elif login_in == 'False':
+                await driver_remove(found_vehicle)
+                client.publish("/SysArch/V1/com2/car", json.dumps(
+                    {
+                        'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
+                        'login': False,
+                        'certified': True,
+                        'tokenID': token_in
+                    }
+                ))
+        else:
+            client.publish("/SysArch/V1/com2/car", json.dumps(
+                {
+                    'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
+                    'login': login_in,
+                    'certified': False,
+                    'tokenID': token_in
+                }
+            ))
+
+
+
+            
 
 
     async def deprocessing(self, event):

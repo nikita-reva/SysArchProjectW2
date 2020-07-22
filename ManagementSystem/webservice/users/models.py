@@ -21,7 +21,7 @@ class Profile(models.Model):
 
 class RFIDToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.CharField(max_length=100, default='')
+    token = models.CharField(max_length=100, default='')
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'{self.user.username} Token'
