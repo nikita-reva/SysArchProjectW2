@@ -18,26 +18,26 @@ client.loop_start()
 
 while True:
     time.sleep(2)
-    client.publish("/SysArch/V1/user/nikita", json.dumps(
+    client.publish("/SysArch/V1/sensor", json.dumps(
             {
                 "SensorValue3": 
                     [
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "valueZ": random.randint(-50, 50), 
                             "name": "Acceleration", 
                             "valueY": random.randint(-50, 50), 
                             "valueX": random.randint(-50, 50), 
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "valueZ": random.randint(-5000, 5000), 
                             "name": "Magnetometer", 
                             "valueY": random.randint(-5000, 5000),  
                             "valueX": random.randint(-5000, 5000), 
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "valueZ": random.randint(-100, 100), 
                             "name": "Gyro", 
                             "valueY": random.randint(-100, 100), 
@@ -47,32 +47,32 @@ while True:
                     "SensorValue1": 
                     [
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "name": "LIDAR", 
                             "value": random.randint(1, 50)
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "name": "Humidity", 
                             "value": random.randint(0, 10)
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "name": "SteeringAngle", 
                             "value": random.randint(0, 180)
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "name": "Temperature", 
                             "value": random.randint(1, 50)
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "name": "Speed", 
                             "value": random.randint(1, 200)
                         }, 
                         {
-                            "timestamp": 1595159612.566244, 
+                            "timestamp": "2020-07-22 13:46:58.042905", 
                             "name": "Altimeter", 
                             "value": random.randint(300, 400)
                         }

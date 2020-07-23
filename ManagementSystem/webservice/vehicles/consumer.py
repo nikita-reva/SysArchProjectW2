@@ -56,7 +56,7 @@ class DashConsumer(AsyncWebsocketConsumer):
         val5 = datapoint['SensorValue1'][5]['value']
 
         # timestamp
-        t = datetime.datetime.strptime(datapoint['SensorValue1'][5]['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+        t = datetime.strptime(datapoint['SensorValue1'][5]['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
         timestamp = t.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         
 
@@ -154,12 +154,11 @@ class RFIDConsumer(AsyncWebsocketConsumer):
     
     async def receive(self, text_data):
         datapoint = json.loads(text_data)
+        print ('Data received')
         print ('>>>>', text_data)
         time_in = datapoint['timestamp']
         token_in = datapoint['tokenID']
         login_in = datapoint['login']
-
-
 
         username = 'W2'
         pw = 'DED'
@@ -180,39 +179,50 @@ class RFIDConsumer(AsyncWebsocketConsumer):
         def driver_allocate(vehicle, user):
             vehicle.driver = user.username
             vehicle.save()
+            print(f'Driver {user.username} allocated to {vehicle.name}')
 
         @database_sync_to_async
         def driver_remove(vehicle):
             vehicle.driver = 'None'
             vehicle.save()
+            print(f'Driver removed from {vehicle.name}')
         
         found_user = await find_user(token_in)
         found_vehicle = await find_vehicle('Vehicle 1')
 
         print(found_user)
         print(found_vehicle)
-
-        print(login_in)
+        print(type(login_in))
 
         if found_user != None:
-            if login_in == 'True':
+            if login_in:
                 await driver_allocate(found_vehicle, found_user)
                 client.publish("/SysArch/V1/com2/car", json.dumps(
                     {
                         'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
                         'login': True,
                         'certified': True,
-                        'tokenID': token_in
+                        'tokenID': token_in,
+                        'user': {
+                            'userName': found_user.username,
+                            'email': found_user.email,
+                            'fullName': f'{found_user.first_name} {found_user.last_name}'
+                        }
                     }
                 ))
-            elif login_in == 'False':
+            elif not(login_in):
                 await driver_remove(found_vehicle)
                 client.publish("/SysArch/V1/com2/car", json.dumps(
                     {
                         'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
                         'login': False,
                         'certified': True,
-                        'tokenID': token_in
+                        'tokenID': token_in,
+                        'user': {
+                            'userName': found_user.username,
+                            'email': found_user.email,
+                            'fullName': f'{found_user.first_name} {found_user.last_name}'
+                        }
                     }
                 ))
         else:
@@ -221,14 +231,14 @@ class RFIDConsumer(AsyncWebsocketConsumer):
                     'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f'),
                     'login': login_in,
                     'certified': False,
-                    'tokenID': token_in
+                    'tokenID': token_in,
+                    'user': {
+                            'userName': 'No user found!',
+                            'email': 'No user found!',
+                            'fullName': 'No user found!'
+                        }
                 }
             ))
-
-
-
-            
-
 
     async def deprocessing(self, event):
         pass
