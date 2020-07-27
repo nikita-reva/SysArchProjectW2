@@ -28,8 +28,8 @@ This the fuctionality I added:
   first sent (as soon it is received) to a Channels consumer, where it is processed and forwarded to a JavaScript websocket client on the 
   frontend. For the visualisation charts I used the library Chart.js and some jQuery for the table visualisation. 
   
-  - RESTful API: I used the Django REST Framework to create a RESTful API for the sensor data. The sensor data is 
-  serialised into JSON and can be manipulated by other programs like Postman or the MQTT client via HTTP-Requests (GET; POST, PUT).
+  - <b>RESTful API:</b> I used the Django REST Framework to create a RESTful API for the sensor data. The sensor data is 
+  serialized into JSON and can be manipulated by other programs like Postman or the MQTT client via HTTP-Requests (GET; POST, PUT).
   
 Although it's not quite finished, the app looks great and works very well. Especially the real-time data visualization works 
 astonishingly well. I really enjoyed working on this app and I learned a lot. I would love to continue where I left off and develop 
