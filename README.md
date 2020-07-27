@@ -11,18 +11,18 @@ because Bootstrap was used. I kept the blog functionality in the app, because it
 
 This the fuctionality I added:
 
-  - MQTT Client (mqtt_subscriber.py): The app is able to connect to a MQTT broker, which runs on a computer in my 
+  - <b>MQTT Client (mqtt_subscriber.py):</b> The app is able to connect to a MQTT broker, which runs on a computer in my 
   university. It can be accessed via VPN. The MQTT client can handle multiple topics, send data 
   directly to the frontend via websockets, post data (in JSON format) to the backend and write 
   data to JSON file in the project folder. During the project execution, the date was sent to me via MQTT from a 
   Raspberry Pi which was handled by a different group of students and contained sensor information. 
   It's also possible to use dummy data from my own publishing client (mqtt_publisher.py).
   
-  - Remote Login via RFID: If a RFID transponder is When an RFID transponder is held to the RFID reader, a message 
+  - <b>Remote Login via RFID:</b> If a RFID transponder is When an RFID transponder is held to the RFID reader, a message 
   is sent to the back end and the owner is assigned to a vehicle as a driver if a user with the correct RFID token is 
   found in the database. When the transponder is read again, the driver is removed.
 
-  - Real-Time Data Visualisation: The use case of the project consisted of receiving sensor data from (imaginary) 
+  - <b>Real-Time Data Visualisation:</b> The use case of the project consisted of receiving sensor data from (imaginary) 
   vehicles and visualizing them in a web application. I decided to visualize the data on a dashboard for each vehicle 
   in real-time. To achieved that, I used websockets and the library Channels. The data received by the MQTT client is 
   first sent (as soon it is received) to a Channels consumer, where it is processed and forwarded to a JavaScript websocket client on the 
