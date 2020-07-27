@@ -29,7 +29,7 @@ This the fuctionality I added:
   frontend. For the visualisation charts I used the library Chart.js and some jQuery for the table visualisation. 
   
   - <b>RESTful API:</b> I used the Django REST Framework to create a RESTful API for the sensor data. The sensor data is 
-  serialized into JSON and can be manipulated by other programs like Postman or the MQTT client via HTTP-Requests (GET; POST, PUT).
+  serialized into JSON and can be manipulated by other programs like Postman or the MQTT client via HTTP-Requests (GET, POST, PUT).
   
 Although it's not quite finished, the app looks great and works very well. Especially the real-time data visualization works 
 astonishingly well. I really enjoyed working on this app and I learned a lot. I would love to continue where I left off and develop 
