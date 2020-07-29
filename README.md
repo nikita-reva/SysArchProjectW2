@@ -18,8 +18,8 @@ This the fuctionality I added:
   Raspberry Pi which was handled by a different group of students and contained sensor information. 
   It's also possible to use dummy data from my own publishing client (mqtt_publisher.py).
   
-  - <b>Remote Login via RFID:</b> If a RFID transponder is When an RFID transponder is held to the RFID reader, a message 
-  is sent to the back end and the owner is assigned to a vehicle as a driver if a user with the correct RFID token is 
+  - <b>Remote Login via RFID:</b> When an RFID transponder is held to the RFID reader, a message 
+  is sent to the backend and the owner is assigned to a vehicle as a driver if a user with the correct RFID token is 
   found in the database. When the transponder is read again, the driver is removed.
 
   - <b>Real-Time Data Visualisation:</b> The use case of the project consisted of receiving sensor data from (imaginary) 
