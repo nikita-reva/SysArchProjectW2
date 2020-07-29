@@ -4,8 +4,8 @@ This project is part of the study course 'System Architecture'.
 
 It is based on a video tutorial by Corey Schafer called "Full-Featured Web App" 
 (Link: https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p).
-This tutorial was very helped me lot to understand the basics of Django and it contained
-a part of the functionality, I needed for the study project, like user accounts, admin dashboard, password 
+This tutorial helped me lot to understand the basics of Django and it contains a large part of the functionality, 
+I needed for the study project, like user accounts, admin dashboard, password 
 encryption, password resetting with email and so on. I also liked that the website is responsive,
 because Bootstrap was used. I kept the blog functionality in the app, because it might be useful someday. 
 
