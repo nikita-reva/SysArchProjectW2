@@ -11,7 +11,7 @@ because Bootstrap is used. We kept the blog functionality in the app, because it
 
 This the fuctionality we added:
 
-  - <b>MQTT Client (mqtt_subscriber.py):</b> The app is able to connect to a MQTT broker, which runs on a computer in my 
+  - <b>MQTT Client (mqtt_subscriber.py):</b> The app is able to connect to a MQTT broker, which runs on a computer in our 
   university. It can be accessed via VPN. The MQTT client can handle multiple topics, send data 
   directly to the frontend via websockets, post data (in JSON format) to the backend and write 
   data to JSON file in the project folder. During the project execution, the data was sent to us via MQTT from a 
